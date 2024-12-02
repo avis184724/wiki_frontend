@@ -4,7 +4,7 @@ import { useNavigate, Routes, Route } from 'react-router-dom';
 import WikiPage from './WikiPage';
 
 function App() {
-  const [ searchQuery, setSearchQuery ] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate;
 
   const handleKeyPress = (e) => {
@@ -23,16 +23,21 @@ function App() {
         <h1>TETRIS DPC Wiki</h1>
         <div className='search-container'>
           <div className='search-icon'>🔍</div>
-          <input 
-            type='text' 
-            className='search-input' 
-            placeholder='검색하기' 
-            value={searchQuery} 
-            onChange={(e) => setSearchQuery(e.target.value)} 
+          <input
+            type='text'
+            className='search-input'
+            placeholder='검색하기'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleKeyPress}
           ></input>
         </div>
       </header>
+      <main>
+        <Routes>
+          <Route path='/wiki/:searchQuery' element={<WikiPage></WikiPage>}></Route>
+        </Routes>
+      </main>
     </div>
   );
 }
